@@ -1,0 +1,10 @@
+Click==7.0
+Flask==1.0.2
+itsdangerous==1.1.0
+Jinja2==2.10
+MarkupSafe==1.1.0
+Werkzeug==0.14.1
+wikipedia==1.4.0
+connexion==2.7.0
+connexion[swagger-ui]
+peewee==3.13.3
