@@ -1,0 +1,101 @@
+swagger: "2.0"
+
+info:
+  version: 1.1.0
+  title: REST API report of Monaco 2018 Racing
+  description: A simple API to see how works Web report of Monaco 2018 Racing
+consumes:
+  - application/json
+  - application/xml
+produces:
+  - application/json
+  - application/xml
+
+
+schemes:
+  - http
+basePath: "/api"
+paths:
+  /report:
+    get:
+      summary: Show the full report
+      description: Returns a table of Monaco 2018 drivers with their best lap time and position according to the time
+      operationId: "api.full_report_for_api"
+      parameters:
+        - name: order
+          description: A way to represent a data - ascending or descending order
+          in: query
+          type: string
+          required: False
+
+      responses:
+        200:
+          description: A table of drivers
+          schema:
+            type: array
+            items:
+              required:
+                - position
+                - driver_name
+                - team
+                - time
+              properties:
+                position:
+                  type: integer
+                driver_name:
+                  type: string
+                team:
+                  type: string
+                time:
+                  type: string
+                code:
+                  type: string
+        404:
+          description: Data files are broken.
+
+
+  /report/drivers:
+    get:
+      operationId: "api.make_the_drivers_report_for_api"
+      parameters:
+        - name: order
+          description: A way to represent a data - ascending or descending order
+          in: query
+          type: string
+          required: False
+
+      summary: Show the drivers list
+      description: Show the list of all drivers with their names and code
+
+      responses:
+        404:
+          description: There is an error in the data files.
+        200:
+          description: List of drivers with their names and codes.
+          schema:
+            required:
+              - driver_name
+              - code
+            properties:
+              driver_name:
+                type: string
+              code:
+                type: string
+
+
+  /report/drivers/{driver_id}:
+    get:
+      operationId: "api.get_record_about_driver_for_api"
+      summary: Show info about specific driver
+      description: Using driver's code show detailed info about this racer
+      parameters:
+        - name: driver_id
+          in: path
+          required: True
+          type: string
+          description: Driver's id (code) that represents specific driver
+      responses:
+        404:
+          description: There is not a driver with that code.
+        200:
+          description: Info about this specific driver.

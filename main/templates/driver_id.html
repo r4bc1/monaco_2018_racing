@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block title %}
+{{record.driver_id}}
+{% endblock %}
+
+{% block table %}
+
+<table class="table table-borderless table-striped">
+    <thead class="thead">
+        <tr>
+          <th scope="col">Position</th>
+          <th scope="col">Driver name</th>
+          <th scope="col">Team</th>
+          <th scope="col">Time</th>
+          <th scope="col">Code</th>
+        </tr>
+    </thead>
+<tbody>
+    <tr>
+
+      <th scope="row">{{record.position}}</th>
+      <td>{{record.name}}</td>
+      <td>{{record.team}}</td>
+      <td>{{record.time}}</td>
+      <td>{{record.driver_id}}</td>
+
+    </tr>
+    <tr>
+      <th scope="row">Short info</th>
+      <td colspan="5">{{ wiki_info }}...</td>
+    </tr>
+    <tr>
+        <th></th>
+        <td></td>
+        <td><a href="{{wiki_url}}" class="btn btn-info">
+        More information about racer</a>
+        </td>
+        <td></td>
+        <td></td>
+    </tr>
+  
+</tbody></table>
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %}
+Drivers
+{% endblock %}
+
+
+{% block table %}
+
+<table class="table table-hover table-striped table-light">
+    <thead class="thead-dark">
+		<tr>
+		  <th scope="col">Driver name</th>
+		  <th scope="col">Code</th>
+		</tr>
+	</thead>
+<tbody>
+
+
+{% for record in db %}
+	<tr>
+	  <th scope="row">{{record.name}}</th>
+	  <td> <a href="?driver_id={{record.driver_id}}" class="btn btn-warning" 
+		style="color: black;" role="button">
+			{{record.driver_id}}</a>
+	  </td>
+	</tr>
+{% endfor %}
+
+</tbody>
+</table>
+{% endblock %}    
